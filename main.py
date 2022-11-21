@@ -1,31 +1,43 @@
-# Function Definition Practice:
-# Define functions according to the following prompts. Run the Replit to verify correct output.
+# arb_args — Takes in any number of arguments and prints them one at a time. 
 
+def arb_args(*args):
+  for a in args:
+    print(a)
 
-# 1. Function that accepts no arguments. It's called say_hello and returns nothing, just prints 'hello'.
-def say_hello():
-  print("hello")
+# inner_func — Takes in two integers. Two nested functions should perform separate, distinct math operations using the integers. The result of both nested functions should then be added together and printed.
 
-# 2. a 'sum' function that accepts two integers and returns the sum.
-def sum(x,y):
-  return x+y
+def inner_func(x,y):
+  def inner_1():
+    return x+y
+  def inner_2():
+    return x-y
+  print(inner_1()+inner_2())
 
-# 3. an 'average' function that accepts two numbers and returns the average.
-def average(x,y):
-  return (x+y)/2
+# lunch_lady — Takes in two strings: a student's name and their lunch preference. The function should print both strings. If a lunch preference is not given, "Mystery Meat" should be printed instead.
 
-# 4. A function that accepts a first name and a last name and formats it to "{last_name}, {first_name}" (returns a string).
-def format(first_name, last_name):
-  return f"{last_name}, {first_name}"
+def lunch_lady(name, lunch="Mystery Meat"):
+  print(name, lunch)
 
-# 5. A function that accepts a first name, last name, graduation year, and student number and returns those four items together in a list.
-def grad_list(first, last, year, student_number):
-  return [first, last, year, student_number]
+# sum_n_product — Accepts two integers and returns both the sum and the product.
+def sum_n_product(x,y):
+  return x+y,x*y
 
-# 6. A function that accepts an integer and returns whether it is above 18 or not (Boolean).
-def over_18(x):
-  return x > 18
+# alias_arb_args — Should be arb_args but assigned an alias. Remember, variables can hold functions in Python just like they can in JS. Alternatively, you can call a function from inside another function.
+alias_arb_args = arb_args
 
-#7. A function that accepts a string and prints the string in reverse (no return value).
-def reverse(str):
-  print(str[::-1])
+# arb_mean — Accepts any number of integers and prints their average.
+def arb_mean(*args):
+  total = 0
+  for a in args:
+    total += a
+  print(a/len(args))
+
+# arb_longest_string — Accepts any number of strings and returns the longest one.
+def arb_longest_string(*args):
+  long = 0
+  longest = ""
+  for a in args:
+    if len(a) > long:
+      long = len(a)
+      longest = a
+  return longest
