@@ -1,71 +1,78 @@
-# 1. name_args — Accepts any number of named arguments and prints them in the pattern key : value one at a time.
+#Functions called max_num
+def max_num(a,b,c):
+  return max([a,b,c])
 
-def name_args(**kwargs):
-  for k in kwargs.keys():
-    print(f"{k}:{kwargs[k]}")
+print(max_num(1,2,3))
+print(max_num(250,125,1))
+print(max_num(14,7,2))
 
-name_args(name="Randon", weather="sunny",location="park",time=3)
-# 2. all_true — Returns True if all the elements in an iterable are true. Hint: there is an existing built-in function that could be very helpful here.
+#functions called multi_list
+def mult_list(lst):
+  if len(lst) == 0:
+    return 0
 
-def all_true(iter):
-  return all(iter)
+  prod = lst[0]
 
-print(all_true([True,True,True]))
-print(all_true((True, False)))
+  if len(lst) > 1:
+    for i in lst[1:]:
+      prod = prod * i
 
-# 3. one_true — Returns True if one of the elements in an iterable is true. Hint: there is an existing built-in function that could be very helpful here.
+  return prod
 
-def one_true(iter):
-  return any(iter)
 
-print(one_true([True,True,True]))
-print(one_true([False, False, False]))
-print(one_true((True, False)))
+print(mult_list([1,2,3]))
+print(mult_list([]))
+print(mult_list([10]))
 
-# 4. recursive_factorial — Uses recursion to find the factorial of an integer.
+#functions called rev_string
+def rev_string(my_str):
+  return my_str[::-1]
 
-def recursive_factorial(n):
-  if n <= 1:
-    return 1
-  else:
-    return n * recursive_factorial(n-1)
+print(rev_string(""))
+print(rev_string("Banana"))
+print(rev_string("a line"))
 
-print(recursive_factorial(3))
-print(recursive_factorial(6))
+# functions called nums_within
+def nums_within(x,a,b):
+  return x in range(a,b+1)
+     
+print(nums_within(3,2,4))     
+print(nums_within(6,2,6))     
+print(nums_within(18,2,9))
 
-# 5. recursive_deduplicate — Recursively removes all adjacent duplicate letters from a string.
+#functions called pascal
 
-def recursive_deduplicate(my_str,i=0):
-  # if our string is empty or only has 1 thing, it's got no duplicates
-  # if i is at the end of the string, no duplicates are left
-  if len(my_str) <= 1 or i == len(my_str)-1:
-    return my_str
-  else:
-    # str at current position is same as next position
-    if my_str[i] == my_str[i+1]:
-      return recursive_deduplicate(my_str[0:i]+my_str[i+1:],i)
-    else:
-      #no duplicate at current position, check next
-      return recursive_deduplicate(my_str,i+1)
-      
-print(recursive_deduplicate("aaaa"))
-print(recursive_deduplicate("aaba"))
-print(recursive_deduplicate("apple"))
-print(recursive_deduplicate(""))
-
-# 6. recursive_reverse — Uses recursion to reverse a string.
-def recursive_reverse(str, i=0):
-  #empty string case
-  if len(str)==0:
-    return ""
+triangle = [[1],[1,1]]
+def pascal(n):
   #base case
-  elif i == len(str)-1:
-    return str[0]
+  if n < 1:
+    print("invalid number of rows")
+  elif n == 1:
+    print(triangle[0])
   else:
-    #recursive case
-    return str[-1-i] + recursive_reverse(str, i+1)
+    row_number = 2
+    #fill up correct number of rows in triangle
+    while len(triangle) < n:
+      row = []
+      row_prev = triangle[row_number - 1]
+      #create correct row, then add to triangle (this row will be 1 longer than row before it)
+      length = len(row_prev)+1
+      for i in range(length):
+        #first number is 1
+        if i == 0:
+          row.append(1)
+        #intermediate nunmbers get added from previous rows
+        elif i > 0 and i < length-1:
+          row.append(triangle[row_number-1][i-1]+triangle[row_number-1][i])
+        #last number is 1
+        else:
+          row.append(1)
+      triangle.append(row)
+      row_number += 1
 
-print(recursive_reverse("aaaa"))
-print(recursive_reverse("aaba"))
-print(recursive_reverse("apple"))
-print(recursive_reverse(""))
+    #print triangle
+    for row in triangle:
+      print(row)
+
+pascal(5)
+pascal(9)
